@@ -1,0 +1,11 @@
+cd functions/nodejs;
+gcloud functions deploy GetAgoraToken --runtime nodejs14 --trigger-http --allow-unauthenticated --project=$1 --update-env-vars "GOOGLE_CLOUD_PROJECT=$1","AGORA_APP_ID=$2","AGORA_PRIMARY_CERTIFICATE=$3" --memory=256MB --timeout=540s;
+cd ../java;
+gcloud functions deploy OnUserSignUp --entry-point functions.OnUserSignUp --runtime java11 --trigger-event providers/firebase.auth/eventTypes/user.create --project=$1 --update-env-vars "GOOGLE_CLOUD_PROJECT=$1" --memory=256MB --timeout=540s;
+gcloud functions deploy OnUserDeleted --entry-point functions.OnUserDeleted --runtime java11 --trigger-event providers/firebase.auth/eventTypes/user.delete --project=$1 --update-env-vars "GOOGLE_CLOUD_PROJECT=$1" --memory=256MB --timeout=540s;
+gcloud functions deploy OnMessageCreated --entry-point functions.OnMessageCreated --runtime java11 --trigger-event "providers/cloud.firestore/eventTypes/document.create" --trigger-resource "projects/$1/databases/(default)/documents/conversations/{conversationId}/messages/{messageId}" --project=$1 --update-env-vars "GOOGLE_CLOUD_PROJECT=$1" --memory=256MB --timeout=540s;
+gcloud functions deploy OnMeetingCreated --entry-point functions.OnMeetingCreated --runtime java11 --trigger-event "providers/cloud.firestore/eventTypes/document.create" --trigger-resource "projects/$1/databases/(default)/documents/meetings/{meetingId}" --project=$1 --update-env-vars "GOOGLE_CLOUD_PROJECT=$1" --memory=256MB --timeout=540s;
+gcloud functions deploy OnCommentCreated --entry-point functions.OnCommentCreated --runtime java11 --trigger-event "providers/cloud.firestore/eventTypes/document.create" --trigger-resource "projects/$1/databases/(default)/documents/posts/{postId}/comments/{commentId}" --project=$1 --update-env-vars "GOOGLE_CLOUD_PROJECT=$1" --memory=256MB --timeout=540s;
+cd ..;
+firebase deploy --only firestore --project $1;
+firebase deploy --only storage --project $1;

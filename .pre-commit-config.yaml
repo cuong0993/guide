@@ -1,0 +1,19 @@
+repos:
+  - repo: local
+    hooks:
+      - id: format_svg
+        name: Run format svg
+        entry: bash -c "svgo --pretty -r -f ./"
+        language: system
+      - id: format_flutter
+        name: Run flutter format
+        entry: bash -c "flutter format --set-exit-if-changed ."
+        language: system
+      - id: flutter_pub_upgrade
+        name: Run flutter pub upgrade
+        entry: bash -c "flutter pub upgrade"
+        language: system
+      - id: format_flutter
+        name: Run flutter analyze
+        entry: bash -c "flutter analyze ."
+        language: system

@@ -1,0 +1,52 @@
+name: guide
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  agora_rtc_engine:
+  animations:
+  auto_route:
+  cached_network_image:
+  cloud_firestore:
+  collection:
+  device_info:
+  dio:
+  firebase_auth:
+  firebase_core:
+  firebase_crashlytics:
+  firebase_messaging:
+  firebase_storage:
+  flutter_email_sender:
+  flutter_hooks:
+  flutter_riverpod: ^1.0.0-dev.0
+  flutter_staggered_grid_view:
+  freezed_annotation:
+  google_sign_in:
+  hooks_riverpod: ^1.0.0-dev.0
+  image_picker:
+  in_app_review:
+  intl:
+  logging:
+  package_info:
+  permission_handler:
+  readmore:
+  shared_preferences:
+  timeago:
+
+dev_dependencies:
+  auto_route_generator:
+  build_runner:
+  flutter_lints:
+  freezed:
+  json_serializable:
+
+flutter:
+  assets:
+    - assets/images/
+  generate: true
+  uses-material-design: true
